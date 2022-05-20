@@ -12,6 +12,10 @@ class LoginFailTestCase(unittest.TestCase):
         self.driver.maximize_window()
         self.driver.get("https://www.imooc.com/")
         self.driver.implicitly_wait(15)
+        self.driver.add_cookie({'name': 'IMCDNS', 'value': 'JkNjk0YzE5OWVkNDEwMTI2MGM5NmQ0MTRmMjc2MmEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMTM1NTMwNQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA5MjcwODIzNzRAcXEuY29tAAAAAAAAAAAAAAAAAAAAADA5YzJjMTFjZGZhYmQ5NmQ4NmQyNmI2ZTE4MGEwNmI2hUSHYp6rhWI%3DZm'})
+        self.driver.refresh()
+        time.sleep(3)
+        # self.driver.quit()
     # 用户名、密码为空
     def test_login_null(self):
         self.driver.find_element_by_id('js-signin-btn').click()
@@ -39,7 +43,7 @@ class LoginFailTestCase(unittest.TestCase):
         self.driver.find_element_by_class_name('xa-login').click()
         time.sleep(5)
         result = self.driver.find_element_by_class_name('rlf-tip-error').text
-        respect_result = u'请求超时'
+        respect_result = u'密码错误'
         print('result' + result)
         print('respect_result' + respect_result)
         self.assertEqual(result, respect_result)
